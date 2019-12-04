@@ -47,8 +47,15 @@ module.exports = {
           ['^' + process.env.VUE_APP_BASE_API]: ''
         }
       }
+
+      // '/dev-api': {
+      //   target: `http://192.168.1.127:8100`,
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/dev-api': ''
+      //   }
     },
-    
+
     after: require('./mock/mock-server.js')
   },
   configureWebpack: {
