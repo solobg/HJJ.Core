@@ -76,7 +76,27 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/student',
+    component: Layout,
+    // redirect: '/student/index',
+    name: 'Student',
+    meta: { title: 'Student', icon: 'dashboard' },
+    children: [
+      {
+        path: 'index',
+        name: '学生管理',
+        component: () => import('@/views/student/index'),
+        meta: { title: 'StudentMangage', icon: 'dashboard' }
+      },
+      {
+        path: 'index2',
+        name: '学生管理2',
+        component: () => import('@/views/student/index2'),
+        meta: { title: 'StudentMangage2', icon: 'dashboard' }
+      }
+      ]
+  },
   {
     path: '/form',
     component: Layout,
