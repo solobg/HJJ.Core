@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace YYSF.QJL.Models
 {
-    public class StudentVM
+    public class BasePageRequest
     {
-        public string Id { get; set; }
+        public int PageIndex { get; set; }
 
-        public string SName { get; set; }
-
-        public int Age { get; set; }
+        public int PageSize { get; set; }
     }
 }

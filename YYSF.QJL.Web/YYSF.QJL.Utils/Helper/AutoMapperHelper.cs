@@ -32,7 +32,7 @@ namespace YYSF.QJL.Utils.Helper
         /// <typeparam name="TSource">要被转化的实体对象，Entity</typeparam>
         /// <param name="source">通过泛型指定的这个扩展方法的类型，理论任何引用类型</param>
         /// <returns>转化之后的实体列表</returns>
-        public static IEnumerable<TDestination> AutoMapToList<TSource, TDestination>(this IEnumerable<TSource> source, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null)
+        public static List<TDestination> AutoMapToList<TSource, TDestination>(this IEnumerable<TSource> source, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null)
             where TDestination : class
             where TSource : class
         {

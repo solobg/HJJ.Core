@@ -19,7 +19,7 @@ namespace YYSF.QJL.Service.Mapping
             return en;
         }
 
-        public override IEnumerable<Student> ConvertToENList(IEnumerable<StudentVM> vlist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null)
+        public override List<Student> ConvertToENList(IEnumerable<StudentVM> vlist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null)
         {
 
             cfgExp = cfg => cfg.CreateMap<StudentVM, Student>().ForMember(b => b.Name, c => c.MapFrom(src => src.SName));
@@ -33,7 +33,7 @@ namespace YYSF.QJL.Service.Mapping
             return vm;
         }
 
-        public override IEnumerable<StudentVM> ConvertToVMList(IEnumerable<Student> elist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null)
+        public override List<StudentVM> ConvertToVMList(IEnumerable<Student> elist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null)
         {
             cfgExp = cfg => cfg.CreateMap<Student, StudentVM>()
             .ForMember(b => b.SName, c => c.MapFrom(src => src.Name));

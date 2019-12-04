@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>YYSF.QJL.CoreAPI</name>
+    </assembly>
+    <members>
+        <member name="T:YYSF.QJL.CoreAPI.Auth.AppAuthenticationSettings">
+            <summary>
+            JWT授权的配置项
+            </summary>
+        </member>
+        <member name="P:YYSF.QJL.CoreAPI.Auth.AppAuthenticationSettings.AppId">
+            <summary>
+            应用ID
+            </summary>
+        </member>
+        <member name="P:YYSF.QJL.CoreAPI.Auth.AppAuthenticationSettings.Secret">
+            <summary>
+            应用密钥(真实项目中可能区分应用,不同的应用对应惟一的密钥)
+            </summary>
+        </member>
+        <member name="T:YYSF.QJL.CoreAPI.Auth.JwtBearerAuthenticationExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:YYSF.QJL.CoreAPI.Auth.JwtBearerAuthenticationExtension.AddJwtBearerAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,YYSF.QJL.CoreAPI.Auth.AppAuthenticationSettings)">
+            <summary>
+            注册JWT Bearer认证服务的静态扩展方法
+            </summary>
+            <param name="services"></param>
+            <param name="appSettings">JWT授权的配置项</param>
+        </member>
+    </members>
+</doc>

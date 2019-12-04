@@ -12,9 +12,9 @@ namespace YYSF.QJL.Service.Mapping
 
         E ConvertToEN(V v, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null);
 
-        IEnumerable<V> ConvertToVMList(IEnumerable<E> elist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null);
+        List<V> ConvertToVMList(IEnumerable<E> elist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null);
 
-        IEnumerable<E> ConvertToENList(IEnumerable<V> vlist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null);
+        List<E> ConvertToENList(IEnumerable<V> vlist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null);
 
     }
 
@@ -25,7 +25,7 @@ namespace YYSF.QJL.Service.Mapping
             return v.AutoMapTo<V, E>(cfgExp);
         }
 
-        public virtual IEnumerable<E> ConvertToENList(IEnumerable<V> vlist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null)
+        public virtual List<E> ConvertToENList(IEnumerable<V> vlist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null)
         {
             return vlist.AutoMapToList<V, E>(cfgExp);
         }
@@ -35,7 +35,7 @@ namespace YYSF.QJL.Service.Mapping
             return e.AutoMapTo<E, V>(cfgExp);
         }
 
-        public virtual IEnumerable<V> ConvertToVMList(IEnumerable<E> elist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null)
+        public virtual List<V> ConvertToVMList(IEnumerable<E> elist, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null)
         {
             return elist.AutoMapToList<E, V>(cfgExp);
         }

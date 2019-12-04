@@ -121,7 +121,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +191,10 @@
     <ProjectReference Include="..\YYSF.QJL.Service\YYSF.QJL.Service.csproj">
       <Project>{4074abcd-e979-45c6-8a74-ac906cd177c7}</Project>
       <Name>YYSF.QJL.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YYSF.QJL.Utils\YYSF.QJL.Utils.csproj">
+      <Project>{6c85cf05-971a-4c36-b163-0b1a5eb0d959}</Project>
+      <Name>YYSF.QJL.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -13,9 +13,15 @@ namespace YYSF.QJL.DAL
     {
         public DbContext()
         {
+            string connstr = "server=.;uid=sa;pwd=123456;database=Test";
+//#if NETFRAMEWORK
+//            connstr = ConfigurationManager.ConnectionStrings["Test"].ConnectionString;
+//#elif NETCOREAPP
+//            connstr = "server=.;uid=sa;pwd=123456;database=Test"
+//#endif
             Db = new SqlSugarClient(new ConnectionConfig()
             {
-                ConnectionString = ConfigurationManager.ConnectionStrings["Test"].ConnectionString,
+                ConnectionString = connstr,
                 DbType = DbType.SqlServer,
                 InitKeyType = InitKeyType.Attribute,//从特性读取主键和自增列信息
                 IsAutoCloseConnection = true,//开启自动释放模式和EF原理一样我就不多解释了
@@ -69,16 +75,16 @@ namespace YYSF.QJL.DAL
             return CurrentDb.Update(m);
         }
 
-        public virtual PageResponse<T> GetPageList(Expression<Func<T, bool>> whereExpression, PageModel page, Expression<Func<T, object>> orderByExpression = null, OrderByType orderByType = OrderByType.Asc)
+        public virtual PageResponse<T> GetPageList(List<IConditionalModel> conditionalList, PageModel page, Expression<Func<T, object>> orderByExpression = null, OrderByType orderByType = OrderByType.Asc)
         {
-            var pagelist = CurrentDb.GetPageList(whereExpression, page, orderByExpression, orderByType);
+            var pagelist = CurrentDb.GetPageList(conditionalList, page, orderByExpression, orderByType);
             return new PageResponse<T>()
             {
                 DataList = pagelist,
                 TotalCount = page.PageCount
             };
+
+
         }
-
-
     }
 }

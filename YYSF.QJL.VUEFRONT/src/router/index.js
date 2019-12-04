@@ -95,7 +95,7 @@ export const constantRoutes = [
         component: () => import('@/views/student/index2'),
         meta: { title: 'StudentMangage2', icon: 'dashboard' }
       }
-      ]
+    ]
   },
   {
     path: '/form',
