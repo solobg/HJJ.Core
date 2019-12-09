@@ -43,13 +43,15 @@ namespace YYSF.QJL.DAL
 
         public virtual bool Add(T m)
         {
-
-            return CurrentDb.Insert(m);
+            Db.SqlQueryable().to
+            Db.Ado.SqlQuery()
+            CurrentDb.AsInsertable()
+            return CurrentDb.InsertReturnIdentity(m);
         }
 
         public virtual bool Delete(dynamic id)
         {
-
+            Db.Queryable<T>()
             return CurrentDb.DeleteById(id);
         }
 
