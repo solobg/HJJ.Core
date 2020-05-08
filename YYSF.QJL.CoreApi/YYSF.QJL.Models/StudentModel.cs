@@ -20,7 +20,7 @@ namespace YYSF.QJL.Models
     public class AddStudentResponse : BaseResponse
     {
 
-
+        public int Id { get; set; }
     }
 
     public class AddStudentRequest : StudentVM
@@ -28,6 +28,10 @@ namespace YYSF.QJL.Models
 
     }
 
+    public class UpdateStudentRequest : StudentVM
+    {
+
+    }
 
     /// <summary>
     /// Getstudent
@@ -38,6 +42,17 @@ namespace YYSF.QJL.Models
         /// ceshi
         /// </summary>
         public string SName { get; set; }
+    }
+
+    public class GetStudentDetailRequest
+    {
+        public int Id { get; set; }
+    }
+
+    public class GetStudentDetailResponse : BaseResponse
+    {
+
+        public StudentVM VM { get; set; }
     }
 
     public class GetStudentListResponse : PageResponse<StudentVM>

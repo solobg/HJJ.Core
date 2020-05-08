@@ -1,5 +1,6 @@
 ﻿using log4net;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using YYSF.QJL.Service;
 namespace YYSF.QJL.CoreAPI.Controllers
 {
     /// <summary>
-    /// Student
+    /// Student API
     /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -30,27 +31,39 @@ namespace YYSF.QJL.CoreAPI.Controllers
             _log = log;
             stuService = studentService;
         }
-        //[HttpGet]
-        //public GetStudentDetailResponse GetDetail([FromQuery]GetStudentDetailRequest request)
-        //{
-        //    try
-        //    {
 
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
- 
         /// <summary>
-        /// 查
+        /// 详情
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpGet]
-        public GetStudentListResponse GetList([FromQuery] GetStudentListRequest request)
+        public GetStudentDetailResponse GetDetail([FromQuery]GetStudentDetailRequest request)
+        {
+            try
+            {
+                var detail = stuService.GetDetail(request.Id);
+                return new GetStudentDetailResponse()
+                {
+                    IsSuccess = true,
+                    VM = detail
+                };
+
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"【Student/GetDetail】" + JsonConvert.SerializeObject(request), ex);
+                return new GetStudentDetailResponse() { Message = "error" };
+            }
+        }
+
+        /// <summary>
+        /// 分页
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public GetStudentListResponse GetPageList([FromQuery] GetStudentListRequest request)
         {
             try
             {
@@ -59,15 +72,15 @@ namespace YYSF.QJL.CoreAPI.Controllers
             }
             catch (Exception ex)
             {
-
-                throw;
+                _log.Error($"【Student/GetList】" + JsonConvert.SerializeObject(request), ex);
+                return new GetStudentListResponse() { Message = "error" };
             }
         }
 
 
 
         /// <summary>
-        /// 新增/修改学生
+        /// 新增
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -76,13 +89,34 @@ namespace YYSF.QJL.CoreAPI.Controllers
         {
             try
             {
-                var response = stuService.AddStudent(request);
+                var response = stuService.Add(request);
                 return response;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _log.Error($"【Student/Add】" + JsonConvert.SerializeObject(request), ex);
+                return new AddStudentResponse() { Message = "error" };
+            }
+        }
 
-                throw;
+
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public BaseResponse Update([FromBody]UpdateStudentRequest request)
+        {
+            try
+            {
+                var response = stuService.Update(request);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"【Student/Add】" + JsonConvert.SerializeObject(request), ex);
+                return new AddStudentResponse() { Message = "error" };
             }
         }
     }
