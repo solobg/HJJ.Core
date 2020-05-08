@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using log4net;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,33 @@ namespace YYSF.QJL.CoreAPI.Controllers
     {
         private readonly StudentService stuService = new StudentService();
 
+        private readonly ILog _log;
+        public StudentController(ILog log)
+        {
+            _log = log;
+            _log.Info("this is a message");
+        }
+        //[HttpGet]
+        //public GetStudentDetailResponse GetDetail([FromQuery]GetStudentDetailRequest request)
+        //{
+        //    try
+        //    {
 
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
+ 
         /// <summary>
-        /// 查询学生列表
+        /// 查
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpGet]
-        public GetStudentListResponse GetStudentList([FromQuery] GetStudentListRequest request)
+        public GetStudentListResponse GetList([FromQuery] GetStudentListRequest request)
         {
             try
             {
@@ -46,7 +66,7 @@ namespace YYSF.QJL.CoreAPI.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public AddStudentResponse AddStudent([FromBody]AddStudentRequest request)
+        public AddStudentResponse Add([FromBody]AddStudentRequest request)
         {
             try
             {

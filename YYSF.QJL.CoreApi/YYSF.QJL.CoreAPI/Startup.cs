@@ -7,6 +7,8 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Threading.Tasks;
 using AutoMapper;
+using log4net;
+using log4net.Config;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -45,6 +47,9 @@ namespace YYSF.QJL.CoreAPI
                         .AllowCredentials()
                     ));
             services.AddMemoryCache();
+            var repository = LogManager.CreateRepository("NETCoreLogRepository");
+            XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));
+            services.AddSingleton(LogManager.GetLogger(repository.Name, typeof(Startup)));
             //services.AddHttpContextAccessor();
             //services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             //var appSettingsSection = Configuration.GetSection("AppSettings");
@@ -57,7 +62,7 @@ namespace YYSF.QJL.CoreAPI
             //services.Configure<WebEncoderOptions>(options =>
             //        options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.BasicLatin, UnicodeRanges.CjkUnifiedIdeographs)
             //);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(opt =>
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(opt =>
             {
                 //opt.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
                 //opt.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Local;

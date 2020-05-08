@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using YYSF.QJL.DAL.Entities;
 
 namespace YYSF.QJL.DAL
 {
@@ -14,11 +15,6 @@ namespace YYSF.QJL.DAL
         public DbContext()
         {
             string connstr = "server=.;uid=sa;pwd=123456;database=Test";
-            //#if NETFRAMEWORK
-            //            connstr = ConfigurationManager.ConnectionStrings["Test"].ConnectionString;
-            //#elif NETCOREAPP
-            //            connstr = "server=.;uid=sa;pwd=123456;database=Test"
-            //#endif
             Db = new SqlSugarClient(new ConnectionConfig()
             {
                 ConnectionString = connstr,
@@ -40,53 +36,10 @@ namespace YYSF.QJL.DAL
         public SqlSugarClient Db;//用来处理事务多表查询和复杂的操作
         public SimpleClient<T> CurrentDb { get { return new SimpleClient<T>(Db); } }
 
-
-        public virtual int Add(T m)
-        {
-            //Db.SqlQueryable().to
-            //Db.Ado.SqlQuery()
-            //CurrentDb.AsInsertable()
-            return CurrentDb.InsertReturnIdentity(m);
-        }
-
-        public virtual bool Delete(dynamic id)
-        {
-            //Db.Queryable<T>()
-            return CurrentDb.DeleteById(id);
-        }
-
-        public virtual List<T> GetList(string where = "")
-        {
-            return CurrentDb.AsQueryable().With(SqlWith.NoLock).Where(where).ToList();
-
-        }
-
-        public virtual T GetSingle(string where = "")
-        {
-            return CurrentDb.AsQueryable().Where(where).Single();
-        }
-
-        public virtual T GetById(dynamic id)
-        {
-            return CurrentDb.GetById(id);
-
-        }
-
-        public virtual bool Update(T m)
-        {
-            return CurrentDb.Update(m);
-        }
-
-        public virtual PageResponse<T> GetPageList(List<IConditionalModel> conditionalList, PageModel page, Expression<Func<T, object>> orderByExpression = null, OrderByType orderByType = OrderByType.Asc)
-        {
-            var pagelist = CurrentDb.GetPageList(conditionalList, page, orderByExpression, orderByType);
-            return new PageResponse<T>()
-            {
-                DataList = pagelist,
-                TotalCount = page.PageCount
-            };
+        //Student对象
+        public SimpleClient<Student> StudentDb { get { return new SimpleClient<Student>(Db); } }
 
 
-        }
+
     }
 }

@@ -18,7 +18,7 @@ namespace YYSF.QJL.Service.Mapping
 
     }
 
-    public abstract class BaseMapper<E, V> : IBaseMapper<E, V> where E : class where V : class
+    public  class BaseMapper<E, V> : IBaseMapper<E, V> where E : class where V : class
     {
         public virtual E ConvertToEN(V v, Action<AutoMapper.IMapperConfigurationExpression> cfgExp = null)
         {
