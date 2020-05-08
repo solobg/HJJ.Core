@@ -17,5 +17,7 @@ namespace YYSF.QJL.DAL.Entities
 
 
         public int Age { get; set; }
+
+        public DateTime CreateTime { get; set; }
     }
 }

@@ -23,6 +23,8 @@ using Microsoft.Extensions.WebEncoders;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 using YYSF.QJL.CoreAPI.Auth;
+using YYSF.QJL.CoreAPI.Extension;
+using YYSF.QJL.Service;
 
 namespace YYSF.QJL.CoreAPI
 {
@@ -47,9 +49,12 @@ namespace YYSF.QJL.CoreAPI
                         .AllowCredentials()
                     ));
             services.AddMemoryCache();
+            services.AddAutoMapper(typeof(ServiceProfile));
             var repository = LogManager.CreateRepository("NETCoreLogRepository");
             XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));
             services.AddSingleton(LogManager.GetLogger(repository.Name, typeof(Startup)));
+
+            services.AddTransient<IStudentService, StudentService>();
             //services.AddHttpContextAccessor();
             //services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             //var appSettingsSection = Configuration.GetSection("AppSettings");

@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using YYSF.QJL.DAL.Entities;
+using YYSF.QJL.Utils;
 
 namespace YYSF.QJL.DAL
 {
@@ -14,7 +15,7 @@ namespace YYSF.QJL.DAL
     {
         public DbContext()
         {
-            string connstr = "server=.;uid=sa;pwd=123456;database=Test";
+            string connstr = AppConfigHelper.AppSettings.ConnectionStrings;
             Db = new SqlSugarClient(new ConnectionConfig()
             {
                 ConnectionString = connstr,

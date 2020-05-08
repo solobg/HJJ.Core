@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Mapper\**" />
+    <EmbeddedResource Remove="Mapper\**" />
+    <None Remove="Mapper\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\YYSF.QJL.DAL\YYSF.QJL.DAL.csproj" />
     <ProjectReference Include="..\YYSF.QJL.Models\YYSF.QJL.Models.csproj" />
     <ProjectReference Include="..\YYSF.QJL.Utils\YYSF.QJL.Utils.csproj" />

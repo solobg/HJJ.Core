@@ -10,9 +10,11 @@ namespace YYSF.QJL.Models
     {
         public string Id { get; set; }
 
-        public string SName { get; set; }
+        public string UserName { get; set; }
 
         public int Age { get; set; }
+
+        public string CreateTime { get; set; }
     }
 
     public class AddStudentResponse : BaseResponse

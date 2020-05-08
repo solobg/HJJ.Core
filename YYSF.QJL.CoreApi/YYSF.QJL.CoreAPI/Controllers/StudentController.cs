@@ -16,13 +16,19 @@ namespace YYSF.QJL.CoreAPI.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly StudentService stuService = new StudentService();
 
         private readonly ILog _log;
-        public StudentController(ILog log)
+        private IStudentService stuService;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="log"></param>
+        /// <param name="studentService"></param>
+        public StudentController(ILog log, IStudentService studentService)
         {
             _log = log;
-            _log.Info("this is a message");
+            stuService = studentService;
         }
         //[HttpGet]
         //public GetStudentDetailResponse GetDetail([FromQuery]GetStudentDetailRequest request)
