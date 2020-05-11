@@ -28,6 +28,9 @@ namespace YYSF.QJL.CoreAPI.Controllers
         /// <param name="studentService"></param>
         public StudentController(ILog log, IStudentService studentService)
         {
+            //var aa = RedisHelper.Set("a", DateTime.Now, 8888);
+            //var bb = RedisHelper.Get("a");
+            //RedisHelper.SetNx()
             _log = log;
             stuService = studentService;
         }

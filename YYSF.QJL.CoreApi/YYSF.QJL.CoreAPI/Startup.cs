@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -40,6 +41,7 @@ namespace YYSF.QJL.CoreAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddCors(o =>
                 o.AddPolicy("*",
                     builder => builder
@@ -53,7 +55,10 @@ namespace YYSF.QJL.CoreAPI
             var repository = LogManager.CreateRepository("NETCoreLogRepository");
             XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));
             services.AddSingleton(LogManager.GetLogger(repository.Name, typeof(Startup)));
-
+            var redisconfig = Configuration["AppSettings:RedisUrl"];
+            var redisClient = new CSRedis.CSRedisClient(redisconfig);
+            RedisHelper.Initialization(redisClient);
+            
             services.AddTransient<IStudentService, StudentService>();
             //services.AddHttpContextAccessor();
             //services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();

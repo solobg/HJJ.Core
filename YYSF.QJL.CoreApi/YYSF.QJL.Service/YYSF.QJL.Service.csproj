@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CSRedisCore" Version="3.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\YYSF.QJL.DAL\YYSF.QJL.DAL.csproj" />
     <ProjectReference Include="..\YYSF.QJL.Models\YYSF.QJL.Models.csproj" />
     <ProjectReference Include="..\YYSF.QJL.Utils\YYSF.QJL.Utils.csproj" />
