@@ -55,10 +55,12 @@ namespace YYSF.QJL.CoreAPI
             var repository = LogManager.CreateRepository("NETCoreLogRepository");
             XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));
             services.AddSingleton(LogManager.GetLogger(repository.Name, typeof(Startup)));
+            //redis
             var redisconfig = Configuration["AppSettings:RedisUrl"];
             var redisClient = new CSRedis.CSRedisClient(redisconfig);
             RedisHelper.Initialization(redisClient);
-            
+            //定时任务
+            //services.AddHostedService<TimedBackgroundService>();
             services.AddTransient<IStudentService, StudentService>();
             //services.AddHttpContextAccessor();
             //services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
